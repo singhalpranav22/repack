@@ -1,6 +1,6 @@
 # Inline Assets
 
-By default, Re.Pack's [Assets loader](/docs/configuration/loaders/assets-loader) is configured to allow you to use assets in a normal way.
+By default, Re.Pack's [Assets loader](/docs/configuration/loaders/assets-loader) is configured to allow to import an asset and output it as as static file in `assets/` or `drawable-*` directories, similarly to Metro.
 This is not the case when it comes to the remote chunks that use assets which are not available in the main app. In this scenario remote chunk must have `inlined assets`.
 
 ## Pre-requisites
