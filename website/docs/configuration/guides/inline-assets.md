@@ -11,7 +11,7 @@ Common examples of such use case are:
 
 To inline assets you have to pass `inline` option to the [Assets loader](/docs/configuration/loaders/assets-loader).
 
-As a result we will get assets in the form of:
+As a result, the assets will be inlined into the JavaScript bundle in the following format:
 
 ```js
 module.exports = { uri: 'data:<mediatype>;<base64_content>' };
