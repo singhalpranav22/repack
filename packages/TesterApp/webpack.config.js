@@ -191,7 +191,6 @@ module.exports = {
         use: {
           loader: '@callstack/repack/assets-loader',
           options: {
-            inline: true,
             platform,
             devServerEnabled: devServer.enabled,
             /**
