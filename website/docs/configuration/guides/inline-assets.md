@@ -13,7 +13,11 @@ As a result we will get assets in the form of:
 module.exports = { uri: 'data:<mediatype>;<base64_content>' };
 ```
 
-_Asset will be available in the chunk because it has been embedded into it._
+:::info
+
+If you're using [Code Splitting](#) or [Module Federation](#), all assets inlined into remote chunks or containers will be available to the host application and should be properly rendered.
+
+:::
 
 That being the case we can pass require statement directly to the `source` prop of `Image` component like so:
 
