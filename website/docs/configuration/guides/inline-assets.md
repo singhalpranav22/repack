@@ -10,9 +10,7 @@ To inline assets you have to pass `inline` option to the [Assets loader](/docs/c
 As a result we will get assets in the form of:
 
 ```js
-// remote.chunk.bundle.js
-// ...
-module.exports = { uri: 'base64string' };
+module.exports = { uri: 'data:<mediatype>;<base64_content>' };
 ```
 
 _Asset will be available in the chunk because it has been embedded into it._
