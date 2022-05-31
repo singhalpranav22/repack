@@ -30,4 +30,8 @@ import image from './image.png';
 
 :::tip
 
-When your code or code that you are using uses `uri` key then you can just use webpack's `assets/inline` and tweak `exclude` and `include` options in both loaders.
+You can also mix inlined assets (by  [Assets loader](#)),  regular assets (by  [Assets loader](#)) as well as [Assets Modules](https://webpack.js.org/guides/asset-modules/) (e.g: `assets/inline`) by adding multiple rules to process assets in different ways.
+
+Use [`include`](https://webpack.js.org/configuration/module/#ruleinclude) and [`exclude`](https://webpack.js.org/configuration/module/#ruleexclude) to configure each rule.
+
+:::
