@@ -1,7 +1,11 @@
 # Inline Assets
 
 By default, Re.Pack's [Assets loader](/docs/configuration/loaders/assets-loader) is configured to allow to import an asset and output it as as static file in `assets/` or `drawable-*` directories, similarly to Metro.
-This is not the case when it comes to the remote chunks that use assets which are not available in the main app. In this scenario remote chunk must have `inlined assets`.
+In some cases, you might want to change that behaviour and inline the assets into the JavaScript bundle. 
+
+Common examples of such use case are:
+- Out-of-tree platforms that don't support static assets in a similar way as Metro or don't support static assets at all.
+- [Code splitting](../../code-splitting/usage) with static assets used by [remote chunks](../../code-splitting/glossary#remote-chunks)
 
 ## Pre-requisites
 
