@@ -19,7 +19,7 @@ If you're using [Code Splitting](#) or [Module Federation](#), all assets inline
 
 :::
 
-That being the case we can pass require statement directly to the `source` prop of `Image` component like so:
+To use the inlined image simply import it or use `require` function:
 
 ```jsx
 // App.js
