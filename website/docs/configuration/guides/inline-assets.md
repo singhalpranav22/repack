@@ -22,9 +22,10 @@ If you're using [Code Splitting](#) or [Module Federation](#), all assets inline
 To use the inlined image simply import it or use `require` function:
 
 ```jsx
-// App.js
-// ...
-<Image source={require('./assets/image.png')} />
+import image from './image.png';
+<Image source={image} />
+// or
+<Image source={require('./image.png')} />
 ```
 
 :::tip
