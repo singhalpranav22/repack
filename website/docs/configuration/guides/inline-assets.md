@@ -7,7 +7,7 @@ Common examples of such use case are:
 - Out-of-tree platforms that don't support static assets in a similar way as Metro or don't support static assets at all.
 - [Code splitting](../../code-splitting/usage) with static assets used by [remote chunks](../../code-splitting/glossary#remote-chunks)
 
-## Pre-requisites
+## Usage
 
 To inline assets you have to pass `inline` option to the [Assets loader](/docs/configuration/loaders/assets-loader).
 
