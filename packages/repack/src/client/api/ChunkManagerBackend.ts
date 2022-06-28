@@ -77,76 +77,74 @@ export class ChunkManagerBackend {
     if (__DEV__ && !this.forceRemoteChunkResolution) {
       url = Chunk.fromDevServer(chunkId);
       fetch = true;
-    } else if (
-      global.__CHUNKS__?.['local']?.includes(chunkId) &&
-      !this.forceRemoteChunkResolution
-    ) {
+    } else{
       url = Chunk.fromFileSystem(chunkId);
-    } else {
-      if (!this.resolveRemoteChunk) {
-        throw new Error(
-          'No remote chunk resolver was provided. Did you forget to add `ChunkManager.configure({ resolveRemoteChunk: ... })`?'
-        );
-      }
+    } 
+    // else {
+    //   if (!this.resolveRemoteChunk) {
+    //     throw new Error(
+    //       'No remote chunk resolver was provided. Did you forget to add `ChunkManager.configure({ resolveRemoteChunk: ... })`?'
+    //     );
+    //   }
 
-      const config = await this.resolveRemoteChunk(chunkId, parentChunkId);
-      absolute = config.absolute ?? absolute;
-      timeout = config.timeout ?? timeout;
-      method = config.method ?? method;
-      url = Chunk.fromRemote(config.url, {
-        excludeExtension: config.excludeExtension,
-      });
+    //   const config = await this.resolveRemoteChunk(chunkId, parentChunkId);
+    //   absolute = config.absolute ?? absolute;
+    //   timeout = config.timeout ?? timeout;
+    //   method = config.method ?? method;
+    //   url = Chunk.fromRemote(config.url, {
+    //     excludeExtension: config.excludeExtension,
+    //   });
 
-      if (config.query instanceof URLSearchParams) {
-        query = config.query.toString();
-      } else if (typeof config.query === 'string') {
-        query = config.query;
-      } else if (config.query) {
-        query = Object.entries(config.query)
-          .reduce(
-            (acc, [key, value]) => [...acc, `${key}=${value}`],
-            [] as string[]
-          )
-          .join('&');
-      }
+    //   if (config.query instanceof URLSearchParams) {
+    //     query = config.query.toString();
+    //   } else if (typeof config.query === 'string') {
+    //     query = config.query;
+    //   } else if (config.query) {
+    //     query = Object.entries(config.query)
+    //       .reduce(
+    //         (acc, [key, value]) => [...acc, `${key}=${value}`],
+    //         [] as string[]
+    //       )
+    //       .join('&');
+    //   }
 
-      if (config.headers instanceof Headers) {
-        config.headers.forEach((value, key) => {
-          headers = headers ?? {};
-          headers[key.toLowerCase()] = value;
-        });
-      } else if (config.headers) {
-        headers = Object.entries(config.headers).reduce(
-          (acc, [key, value]) => ({
-            ...acc,
-            [key.toLowerCase()]: value,
-          }),
-          {}
-        );
-      }
+    //   if (config.headers instanceof Headers) {
+    //     config.headers.forEach((value, key) => {
+    //       headers = headers ?? {};
+    //       headers[key.toLowerCase()] = value;
+    //     });
+    //   } else if (config.headers) {
+    //     headers = Object.entries(config.headers).reduce(
+    //       (acc, [key, value]) => ({
+    //         ...acc,
+    //         [key.toLowerCase()]: value,
+    //       }),
+    //       {}
+    //     );
+    //   }
 
-      if (config.body instanceof FormData) {
-        const tempBody: Record<string, string> = {};
-        config.body.forEach((value, key) => {
-          if (typeof value === 'string') {
-            tempBody[key] = value;
-          } else {
-            console.warn(
-              'ChunkManager.resolveChunk does not support File as FormData key in body'
-            );
-          }
-        });
-        body = JSON.stringify(tempBody);
-      } else if (config.body instanceof URLSearchParams) {
-        const tempBody: Record<string, string> = {};
-        config.body.forEach((value, key) => {
-          tempBody[key] = value;
-        });
-        body = JSON.stringify(tempBody);
-      } else {
-        body = config.body ?? undefined;
-      }
-    }
+    //   if (config.body instanceof FormData) {
+    //     const tempBody: Record<string, string> = {};
+    //     config.body.forEach((value, key) => {
+    //       if (typeof value === 'string') {
+    //         tempBody[key] = value;
+    //       } else {
+    //         console.warn(
+    //           'ChunkManager.resolveChunk does not support File as FormData key in body'
+    //         );
+    //       }
+    //     });
+    //     body = JSON.stringify(tempBody);
+    //   } else if (config.body instanceof URLSearchParams) {
+    //     const tempBody: Record<string, string> = {};
+    //     config.body.forEach((value, key) => {
+    //       tempBody[key] = value;
+    //     });
+    //     body = JSON.stringify(tempBody);
+    //   } else {
+    //     body = config.body ?? undefined;
+    //   }
+    // }
 
     if (
       !this.cache![chunkId] ||
